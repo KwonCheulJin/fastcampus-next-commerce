@@ -6,11 +6,17 @@ import Button from '@components/Button'
 import { useEffect, useRef, useState } from 'react'
 
 const Home: NextPage = () => {
-  const [products, setProducts] = useState<
-    { id: string; properties: { id: string }[] }[]
-  >([])
+  // const [products, setProducts] = useState<
+  //   { id: string; properties: { id: string }[] }[]
+  // >([])
+  const [products, setProducts] = useState<{ id: string; name: string }[]>([])
+  // useEffect(() => {
+  //   fetch('/api/get-items')
+  //     .then((res) => res.json())
+  //     .then((data) => setProducts(data.items))
+  // }, [])
   useEffect(() => {
-    fetch('/api/get-items')
+    fetch('/api/get-products')
       .then((res) => res.json())
       .then((data) => setProducts(data.items))
   }, [])
@@ -45,7 +51,10 @@ const Home: NextPage = () => {
         </div>
         <div>
           <p>Product List</p>
-          {products &&
+          {products.map((item) => (
+            <div key={item.id}>{item.name}</div>
+          ))}
+          {/* {products &&
             products.map((product, index) => (
               <>
                 <div className="items" key={product.id}>
@@ -70,7 +79,7 @@ const Home: NextPage = () => {
                     ))}
                 </div>
               </>
-            ))}
+            ))} */}
         </div>
         <style jsx>{`
           .container {
