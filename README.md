@@ -7,3 +7,4 @@
 - ESLint
 - lint-staged
 - husky
+- prisma
